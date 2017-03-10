@@ -94,13 +94,17 @@ class CALCULATOR
 {
 private:
         Stack s;
+        const char* pStr;                // строка для ввода
+        int len;                   // длина строки
 public:
+        CALCULATOR(const char* ptr)      // конструктор
+        {
+                pStr = ptr;            // запоминаем указатель на строку
+                len = strlen(pStr);    // устанавливаем длину
+        }
+        double algoritm(const char* str);  // алгоритм выполнения действий
         void action(char act);             // выполнение действий
         int prioritet(char act);           // определение приоритета действия
-        Stack stack()
-        {
-                return s;
-        }
 };
 
 
@@ -131,22 +135,21 @@ int CALCULATOR::prioritet(char act)
 }
 
 
-double calc(const char* string, int* status)
+double CALCULATOR::algoritm(const char* string)
 {
-        const char *p = string;
-        CALCULATOR task;					// создаем объект для разбора
         char n;
         double k;
+        const char* p;
 
         // заполнение двух стеков: для действий и для чисел
-        for (int i = 0; i < strlen(string); i++)
+        for (int i = 0; i < len; i++)
         {
 
                 // если число, то заполняем стек для чисел
                 if ((string[i] >= '0') && (string[i] <= '9'))
                 {
                         double temp = atof(string + i);
-                        task.stack.pushNumber(temp);
+                        s.pushNumber(temp);
                         p = strpbrk(string + i, "+-*/^()");
                         if (p == NULL) break;
                         i = p - string - 1;
@@ -156,36 +159,42 @@ double calc(const char* string, int* status)
                 {
                         while (1)
                         {
-                                n = task.stack.popAction();
+                                n = s.popAction();
                                 if (n == '(') { break; }
-                                task.action(n);
-                                k = task.stack.popNumber();
+                                action(n);
+                                k = s.popNumber();
                         }
                 }
                 // если встретилась открывающаяся скобка или предыдущее действие - открывающаяся скобка, то заполняем действием стек для действий
-                else if ((string[i] == '(') || (task.stack.popActionTop1_1() == '(')) {
-                        task.stack.pushAction(string[i]);
+                else if ((string[i] == '(') || (s.popActionTop1_1() == '(')) {
+                        s.pushAction(string[i]);
                 }
                 // если приоритет операции ниже или равен операции, находящейся на вершине, то
-                else if (task.prioritet(task.stack.popActionTop1_1()) >= task.prioritet(string[i]))
+                else if (prioritet(s.popActionTop1_1()) >= prioritet(string[i]))
                 {
-                        n = task.stack.popAction();   //выталкиваем операцию из стека
-                        task.action(n);           //выполняем действие со стеком из чисел
-                        k = task.stack.popNumber();
+                        n = s.popAction();   //выталкиваем операцию из стека
+                        action(n);           //выполняем действие со стеком из чисел
+                        k = s.popNumber();
                         --i;
                 }
                 // если приоритет операции выше, то заполняем стек для действий
                 else
                 {
-                 task.stack.pushAction(string[i]);
+                 s.pushAction(string[i]);
                 }
         }
         while (1)
         {
-                if (task.stack.gettopAction() == 0) { break; }
-                n = task.stack.popAction();
-                task.action(n);
-                k = task.stack.popNumber();
+                if (s.gettopAction() == 0) { break; }
+                n = s.popAction();
+                action(n);
+                k = s.popNumber();
         }
-        return task.stack.popNumber();
+        return s.popNumber();
+}
+
+double calc(const char* string, int* status)
+{
+        CALCULATOR task(string);					// создаем объект для разбора
+        return task.algoritm(string);
 }
