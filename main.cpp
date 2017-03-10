@@ -1,176 +1,195 @@
-
 #include <iostream>
 #include <cstring>
 #include <math.h>
 #include <cstdlib>
 
 using namespace std;
-const int MAX = 10;     
+const int MAX = 50;
 
 
 class Stack
 {
 private:
-	char action[MAX];         // массив для символов действий
-	int top1;                 // вершина для символьного массива
-	int number[MAX];          // массив для чисел
-	int top2;                 // вершина для числового массива
+    char action[MAX];         // РјР°СЃСЃРёРІ РґР»СЏ СЃРёРјРІРѕР»РѕРІ РґРµР№СЃС‚РІРёР№
+    int top1;                 // РІРµСЂС€РёРЅР° РґР»СЏ СЃРёРјРІРѕР»СЊРЅРѕРіРѕ РјР°СЃСЃРёРІР°
+    double number[MAX];       // РјР°СЃСЃРёРІ РґР»СЏ С‡РёСЃРµР»
+    int top2;                 // РІРµСЂС€РёРЅР° РґР»СЏ С‡РёСЃР»РѕРІРѕРіРѕ РјР°СЃСЃРёРІР°
 public:
-	Stack()              // конструктор
-	{
-		top1 = 0;
-		top2 = 0;
-	}
-	void pushAction(char var) // поместить в символьный массив cимвол
-	{
-		action[top1] = var;
-		top1++;
-	}
-	char popAction()           // взять из символьного массива символ
-	{
-		top1--;
-		return action[top1];
-	}
-	int gettopAction()         // узнать количество элементов в массиве символов
-	{
-		return top1;
-	}
-	int gettopNumber()         // узнать количество элементов в массиве символов
-	{
-		return top2;
-	}
-	void pushNumber(int var)  // поместить в символьный массив cимвол
-	{
-		number[top2] = var;
-		top2++;
-	}
-	int popNumber()           // взять из символьного массива символ
-	{
-		top2--;
-		return number[top2];
-	}
-	int sum()
-	{
-		return number[top2-2] = number[top2 - 2] + number[top2-1];
-	}
-	int minus()
-	{
-		return number[top2-2] = number[top2 - 2] - number[top2-1];
-	}
-	int divid()
-	{
-		return number[top2-2] = number[top2 - 2] / number[top2-1];
-	}
-	int multy()
-	{
-		return number[top2-2] = number[top2 - 2] * number[top2 - 1];
-	}
-	int stepen()
-	{
-		return number[top2-2] = pow(number[top2 - 2], number[top2-1]); 
-	}
-	char popActionTop1_1()          
-	{
-		return action[top1-1];
-	}
+    Stack()              // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+    {
+        top1 = 0;
+        top2 = 0;
+    }
+    void pushAction(char var) // РїРѕРјРµСЃС‚РёС‚СЊ РІ СЃРёРјРІРѕР»СЊРЅС‹Р№ РјР°СЃСЃРёРІ cРёРјРІРѕР»
+    {
+        action[top1] = var;
+        top1++;
+    }
+    char popAction()           // РІР·СЏС‚СЊ РёР· СЃРёРјРІРѕР»СЊРЅРѕРіРѕ РјР°СЃСЃРёРІР° СЃРёРјРІРѕР»
+    {
+        top1--;
+        return action[top1];
+    }
+    int gettopAction()         // СѓР·РЅР°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РІ РјР°СЃСЃРёРІРµ СЃРёРјРІРѕР»РѕРІ
+    {
+        return top1;
+    }
+    int gettopNumber()         // СѓР·РЅР°С‚СЊ РєРѕР»РёС‡РµСЃС‚РІРѕ СЌР»РµРјРµРЅС‚РѕРІ РІ РјР°СЃСЃРёРІРµ СЃРёРјРІРѕР»РѕРІ
+    {
+        return top2;
+    }
+    void pushNumber(double var)  // РїРѕРјРµСЃС‚РёС‚СЊ РІ СЃРёРјРІРѕР»СЊРЅС‹Р№ РјР°СЃСЃРёРІ cРёРјРІРѕР»
+    {
+        number[top2] = var;
+        top2++;
+    }
+    double popNumber()           // РІР·СЏС‚СЊ РёР· СЃРёРјРІРѕР»СЊРЅРѕРіРѕ РјР°СЃСЃРёРІР° СЃРёРјРІРѕР»
+    {
+        top2--;
+        return number[top2];
+    }
+    double sum()
+    {
+        return number[top2-2] = number[top2 - 2] + number[top2-1];
+    }
+    double minus()
+    {
+        return number[top2-2] = number[top2 - 2] - number[top2-1];
+    }
+    double divid()
+    {
+        return number[top2-2] = number[top2 - 2] / number[top2-1];
+    }
+    double multy()
+    {
+        return number[top2-2] = number[top2 - 2] * number[top2 - 1];
+    }
+    double stepen()
+    {
+        return number[top2-2] = pow(number[top2 - 2], number[top2-1]);
+    }
+    char popActionTop1_1()
+    {
+        return action[top1-1];
+    }
 };
 
 
 class CALCULATOR
 {
 private:
-	Stack s;                 
-	char* pStr;                // строка для ввода
-	int len;                   // длина строки
+    Stack s;
+    char* pStr;                // СЃС‚СЂРѕРєР° РґР»СЏ РІРІРѕРґР°
+    int len;                   // РґР»РёРЅР° СЃС‚СЂРѕРєРё
 public:
-	CALCULATOR(char* ptr)      // конструктор
-	{
-		pStr = ptr;            // запоминаем указатель на строку
-		len = strlen(pStr);    // устанавливаем длину
-	}
-	int calc(char* str, int status);  // алгоритм выполнения действий
-	void action(char act);             // выполнение действий
-	int prioritet(char act);           // определение приоритета действия
+    CALCULATOR(char* ptr)      // РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂ
+    {
+        pStr = ptr;            // Р·Р°РїРѕРјРёРЅР°РµРј СѓРєР°Р·Р°С‚РµР»СЊ РЅР° СЃС‚СЂРѕРєСѓ
+        len = strlen(pStr);    // СѓСЃС‚Р°РЅР°РІР»РёРІР°РµРј РґР»РёРЅСѓ
+    }
+    double calc(char* str, int status);  // Р°Р»РіРѕСЂРёС‚Рј РІС‹РїРѕР»РЅРµРЅРёСЏ РґРµР№СЃС‚РІРёР№
+    void action(char act);             // РІС‹РїРѕР»РЅРµРЅРёРµ РґРµР№СЃС‚РІРёР№
+    int prioritet(char act);           // РѕРїСЂРµРґРµР»РµРЅРёРµ РїСЂРёРѕСЂРёС‚РµС‚Р° РґРµР№СЃС‚РІРёСЏ
 };
 
 
 
 void CALCULATOR::action(char act) {
-	switch (act)
-	{
-	case '+': s.pushNumber(s.sum()); break;
-	case '-': s.pushNumber(s.minus()); break;
-	case '*': s.pushNumber(s.multy()); break;
-	case '/': s.pushNumber(s.divid()); break;
-	case '^': s.pushNumber(s.stepen()); break;
-	default: cout << "\nНеизвестный оператор"; exit(1);
-	}
-	return;
+    switch (act)
+    {
+    case '+': s.sum(); break;
+    case '-': s.minus(); break;
+    case '*': s.multy(); break;
+    case '/': s.divid(); break;
+    case '^': s.stepen(); break;
+    default: cout << "\nРќРµРёР·РІРµСЃС‚РЅС‹Р№ РѕРїРµСЂР°С‚РѕСЂ"; exit(1);
+    }
+    return;
 }
 
 int CALCULATOR::prioritet(char act)
 {
-	switch (act)
-	{
-	case '+': return 1; break;
-	case '-': return 1; break;
-	case '*': return 2; break;
-	case '/': return 2; break;
-	case '^': return 3; break;
-	}
+    switch (act)
+    {
+    case '+': return 1; break;
+    case '-': return 1; break;
+    case '*': return 2; break;
+    case '/': return 2; break;
+    case '^': return 3; break;
+    }
 }
 
-int CALCULATOR::calc(char* string, int status)
+
+double CALCULATOR::calc(char* string, int status)
 {
-	int l = strlen(string);
-	char n;
-	int k;
+    char n;
+    double k;
+    char* p;
 
-	// заполнение двух стеков: для действий и для чисел 
-	for (int i = 0; i < l; ++i)
-	{
-		// если число, то заполняем стек для чисел
-		if ((string[i] <= '9') && (string[i] >= '0'))
-		{
-			s.pushNumber(atof(string + i));
-		}
-		// если приоритет операции ниже или равен операции, находящейся на вершине, то  
-		else if (prioritet(s.popActionTop1_1()) >= prioritet(string[i]))
-		{
-			n = s.popAction();   //выталкиваем операцию из стека
-			action(n);           //выполняем действие со стеком из чисел 
-			s.pushAction(string[i]);//ставим новую операцию на стек  действий
-		}
-		// если приоритет операции выше, то заполняем стек для действий 
-		else
-		{
-		 s.pushAction(string[i]);
-		}
-	}
-	while (1)
-	{
+    // Р·Р°РїРѕР»РЅРµРЅРёРµ РґРІСѓС… СЃС‚РµРєРѕРІ: РґР»СЏ РґРµР№СЃС‚РІРёР№ Рё РґР»СЏ С‡РёСЃРµР»
+    for (int i = 0; i < len; i++)
+    {
 
-		if (s.gettopAction() == 0) { break; }
-		n = s.popAction();
-		cout << n << endl;
-		action(n);
-	}
-	return s.popNumber();
+        // РµСЃР»Рё С‡РёСЃР»Рѕ, С‚Рѕ Р·Р°РїРѕР»РЅСЏРµРј СЃС‚РµРє РґР»СЏ С‡РёСЃРµР»
+        if ((string[i] >= '0') && (string[i] <= '9'))
+        {
+            double temp = atof(string + i);
+            s.pushNumber(temp);
+            p = strpbrk(string + i, "+-*/^()");
+            if (p == NULL) break;
+            i = p - string - 1;
+        }
+        // РµСЃР»Рё РІСЃС‚СЂРµС‚РёР»Р°СЃСЊ Р·Р°РєСЂС‹РІР°СЋС‰Р°СЏСЃСЏ СЃРєРѕР±РєР°, С‚Рѕ РІС‹С‚Р°Р»РєРёРІР°РµРј РІСЃРµ РґРµР№СЃС‚РІРёСЏ РёР· СЃС‚РµРєР° Рё РІС‹РїРѕР»РЅСЏРµРј РёС…
+        else if (string[i] == ')')
+        {
+            while (1)
+            {
+                n = s.popAction();
+                if (n == '(') { break; }
+                action(n);
+                k = s.popNumber();
+            }
+        }
+        // РµСЃР»Рё РІСЃС‚СЂРµС‚РёР»Р°СЃСЊ РѕС‚РєСЂС‹РІР°СЋС‰Р°СЏСЃСЏ СЃРєРѕР±РєР° РёР»Рё РїСЂРµРґС‹РґСѓС‰РµРµ РґРµР№СЃС‚РІРёРµ - РѕС‚РєСЂС‹РІР°СЋС‰Р°СЏСЃСЏ СЃРєРѕР±РєР°, С‚Рѕ Р·Р°РїРѕР»РЅСЏРµРј РґРµР№СЃС‚РІРёРµРј СЃС‚РµРє РґР»СЏ РґРµР№СЃС‚РІРёР№
+        else if ((string[i] == '(') || (s.popActionTop1_1() == '(')) {
+            s.pushAction(string[i]);
+        }
+        // РµСЃР»Рё РїСЂРёРѕСЂРёС‚РµС‚ РѕРїРµСЂР°С†РёРё РЅРёР¶Рµ РёР»Рё СЂР°РІРµРЅ РѕРїРµСЂР°С†РёРё, РЅР°С…РѕРґСЏС‰РµР№СЃСЏ РЅР° РІРµСЂС€РёРЅРµ, С‚Рѕ
+        else if (prioritet(s.popActionTop1_1()) >= prioritet(string[i]))
+        {
+            n = s.popAction();   //РІС‹С‚Р°Р»РєРёРІР°РµРј РѕРїРµСЂР°С†РёСЋ РёР· СЃС‚РµРєР°
+            action(n);           //РІС‹РїРѕР»РЅСЏРµРј РґРµР№СЃС‚РІРёРµ СЃРѕ СЃС‚РµРєРѕРј РёР· С‡РёСЃРµР»
+            k = s.popNumber();
+            --i;
+        }
+        // РµСЃР»Рё РїСЂРёРѕСЂРёС‚РµС‚ РѕРїРµСЂР°С†РёРё РІС‹С€Рµ, С‚Рѕ Р·Р°РїРѕР»РЅСЏРµРј СЃС‚РµРє РґР»СЏ РґРµР№СЃС‚РІРёР№
+        else
+        {
+         s.pushAction(string[i]);
+        }
+    }
+    while (1)
+    {
+        if (s.gettopAction() == 0) { break; }
+        n = s.popAction();
+        action(n);
+        k = s.popNumber();
+    }
+    return s.popNumber();
 }
 
 
 int main()
 {
-	setlocale(LC_ALL, "Russian");
-	char string[MAX]; 
+    setlocale(LC_ALL, "Russian");
+    char string[MAX];
 
-	cout << "\nВведите арифметическое выражение:  ";
-	cin >> string;
-	CALCULATOR* task = new CALCULATOR(string);					// создаем объект для разбора
-	cout << "\nРезультат: " << task->calc(string,1) << endl;    // решаем
-	delete task;												// удаляем объект
-	
-	return 0;
+    cout << "\nР’РІРµРґРёС‚Рµ Р°СЂРёС„РјРµС‚РёС‡РµСЃРєРѕРµ РІС‹СЂР°Р¶РµРЅРёРµ:  ";
+    cin >> string;
+    CALCULATOR* task = new CALCULATOR(string);					// СЃРѕР·РґР°РµРј РѕР±СЉРµРєС‚ РґР»СЏ СЂР°Р·Р±РѕСЂР°
+    cout << "\nР РµР·СѓР»СЊС‚Р°С‚: " << task->calc(string,1) << endl;    // СЂРµС€Р°РµРј
+    delete task;												// СѓРґР°Р»СЏРµРј РѕР±СЉРµРєС‚
+
+    return 0;
 }
-
 
